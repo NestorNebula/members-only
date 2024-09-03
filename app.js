@@ -7,6 +7,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const pgSession = require('connect-pg-simple')(session);
 const pool = require('./db/pool');
 const app = express();
+const indexRouter = require('./routes/indexRouter');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -24,6 +25,8 @@ app.use(
   })
 );
 app.use(passport.session());
+
+app.use('/', indexRouter);
 
 const PORT = process.env.PORT;
 app.listen(PORT);
