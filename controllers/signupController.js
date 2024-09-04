@@ -1,5 +1,7 @@
 const { body, validationResult } = require('express-validator');
 const db = require('../db/queries');
+const bcrypt = require('bcrypt');
+const customError = require('../modules/error');
 
 const errNameLength = 'should have a length between 2 and 25 characters.';
 const errEmailLength = 'Email should have a maximum length of 50 characters.';
@@ -37,12 +39,30 @@ function getSignup(req, res) {
 
 const postSignUp = [
   userValidation,
-  async (req, res) => {
+  async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       console.log(errors);
       return res.render('sign-up', { errors: errors.array() });
     }
+    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+      if (err) {
+        next(
+          new customError(
+            'Error when validating the password.',
+            500,
+            'Server Error'
+          )
+        );
+        return;
+      }
+      await db.insertUser({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        password: hashedPassword,
+      });
+    });
     res.redirect('/');
   },
 ];
