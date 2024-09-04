@@ -12,6 +12,7 @@ const app = express();
 const indexRouter = require('./routes/indexRouter');
 const signupRouter = require('./routes/signupRouter');
 const loginRouter = require('./routes/loginRouter');
+const customError = require('./modules/error');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -71,6 +72,15 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/sign-up', signupRouter);
 app.use('/log-in', loginRouter);
+app.use((req, res, next) => {
+  next(new customError("This page doesn't exist.", 404, 'Page not found'));
+});
+
+app.use((err, req, res, next) => {
+  err instanceof customError
+    ? res.render('error', { error: err })
+    : res.status(500).send('Unknown Error');
+});
 
 const PORT = process.env.PORT;
 app.listen(PORT);
