@@ -72,6 +72,18 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/sign-up', signupRouter);
 app.use('/log-in', loginRouter);
+app.get('/log-out', (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(
+        new customError('Error when logging out', 500, 'Server Error')
+      );
+    }
+    req.session = null;
+    res.clearCookie('connect.sid');
+    res.redirect('/');
+  });
+});
 app.use((req, res, next) => {
   next(new customError("This page doesn't exist.", 404, 'Page not found'));
 });
