@@ -6,6 +6,9 @@
     <title>Sign-Up</title>
   </head>
   <body>
+    <% if (locals.errors) { locals.errors.forEach((err) => { %>
+    <div><%= err.msg %></div>
+    <% })} %>
     <form action="/sign-up" method="POST">
       <label for="first_name">First Name</label>
       <input id="first_name" name="first_name" type="text" required />
