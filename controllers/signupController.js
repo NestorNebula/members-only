@@ -27,8 +27,15 @@ function getSignup(req, res) {
   res.render('sign-up');
 }
 
-function postSignUp(req, res) {
-  res.redirect('/');
-}
+const postSignUp = [
+  userValidation,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.render('sign-up', { errors: errors.array() });
+    }
+    res.redirect('/');
+  },
+];
 
 module.exports = { getSignup, postSignUp };
