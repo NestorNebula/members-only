@@ -1,5 +1,5 @@
 const getLogin = (req, res) => {
-  res.render('log-in');
+  req.user ? res.redirect('/') : res.render('log-in');
 };
 
 module.exports = { getLogin };

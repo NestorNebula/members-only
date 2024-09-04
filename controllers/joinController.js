@@ -2,7 +2,7 @@ require('dotenv').config();
 const db = require('../db/queries');
 
 const getJoin = (req, res) => {
-  if (!req.user) {
+  if (!req.user || req.user.member) {
     return res.redirect('/');
   }
   res.render('join');

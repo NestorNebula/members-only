@@ -42,7 +42,7 @@ const userValidation = [
 ];
 
 function getSignup(req, res) {
-  res.render('sign-up');
+  req.user ? res.redirect('/') : res.render('sign-up');
 }
 
 const postSignUp = [
