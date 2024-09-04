@@ -8,7 +8,7 @@
   <body>
     <%- include('navbar') %> 
     <% if (user) { %>
-    <div>Hello, <%= user.first_name, user.last_name %></div>
+    <div>Hello, <%= `${user.first_name} ${user.last_name}` %></div>
     <a href="/log-out">Log Out</a>
     <% } %>
   </body>
