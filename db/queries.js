@@ -29,6 +29,11 @@ async function insertUser(user) {
 
 // Messages Queries
 
+async function getAllMessages() {
+  const { rows } = await pool.query('SELECT * FROM messages');
+  return rows;
+}
+
 async function insertMessage(message) {
   await pool.query(
     'INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3)',
@@ -41,5 +46,6 @@ module.exports = {
   getUserById,
   updateMemberStatus,
   insertUser,
+  getAllMessages,
   insertMessage,
 };
