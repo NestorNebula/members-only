@@ -5,6 +5,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pgSession = require('connect-pg-simple')(session);
+const bcrypt = require('bcrypt');
 const pool = require('./db/pool');
 const db = require('./db/queries');
 const app = express();
@@ -28,6 +29,44 @@ app.use(
   })
 );
 app.use(passport.session());
+passport.use(
+  new LocalStrategy(
+    { usernameField: 'email' },
+    async (username, password, done) => {
+      try {
+        const user = await db.getUser(username);
+        if (!user) {
+          return done(null, false, { message: 'Incorrect email' });
+        }
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+          return done(null, false, { message: 'Incorrect password' });
+        }
+        return done(null, user);
+      } catch (err) {
+        return done(err);
+      }
+    }
+  )
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.getUserById(id);
+    done(null, user);
+  } catch (err) {
+    return done(err);
+  }
+});
+
+app.use((req, res, next) => {
+  res.locals.user = req.user;
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/sign-up', signupRouter);

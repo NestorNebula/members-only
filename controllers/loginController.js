@@ -1,8 +1,5 @@
-const db = require('../db/queries');
-const bcrypt = require('bcrypt');
+const getLogin = (req, res) => {
+  res.render('log-in');
+};
 
-const getLogin = (req, res) => {};
-
-const postLogin = async (req, res) => {};
-
-module.exports = { getLogin, postLogin };
+module.exports = { getLogin };
