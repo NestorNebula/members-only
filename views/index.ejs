@@ -8,6 +8,11 @@
   <body>
     <%- include('navbar') %> <% messages.forEach((message) => { %>
     <div>
+      <div>
+        <% if (!user) { %> Private <% } else if (user.id === message.user_id) {
+        %> You <% } else { %> <%= `${message.first_name} +
+        ${message.last_name}`%> <% } %>
+      </div>
       <div><%= message.title %></div>
       <div><%= message.content %></div>
     </div>
