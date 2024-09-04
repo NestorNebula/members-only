@@ -6,7 +6,12 @@
     <title><%= title %></title>
   </head>
   <body>
-    <%- include('navbar') %> <% if (user) { %>
+    <%- include('navbar') %> <% messages.forEach((message) => { %>
+    <div>
+      <div><%= message.title %></div>
+      <div><%= message.content %></div>
+    </div>
+    <% }) %> <% if (user) { %>
     <div>Hello, <%= `${user.first_name} ${user.last_name}` %></div>
     <div>Create a new message</div>
     <form action="/new-message" method="POST">
