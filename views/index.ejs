@@ -6,14 +6,8 @@
     <title><%= title %></title>
   </head>
   <body>
-    <% if (!locals.user) { %>
-    <div>
-      <div>You aren't logged in</div>
-      <a href="/sign-up">Sign-Up</a>
-      <div>Already have an account ?</div>
-      <a href="/log-in">Log-In</a>
-    </div>
-    <% } else { %>
+    <%- include('navbar') %> 
+    <% if (user) { %>
     <div>Hello, <%= user.first_name, user.last_name %></div>
     <a href="/log-out">Log Out</a>
     <% } %>
