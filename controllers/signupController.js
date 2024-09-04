@@ -6,6 +6,7 @@ const customError = require('../modules/error');
 const errNameLength = 'should have a length between 2 and 25 characters.';
 const errEmailLength = 'Email should have a maximum length of 50 characters.';
 const errEmail = 'Email need to be a valid email.';
+const pwdMismatch = "Passwords don't match.";
 
 const userValidation = [
   body('first_name')
@@ -31,6 +32,13 @@ const userValidation = [
         throw new Error('This Email is already taken.');
       }
     }),
+  body('password').custom((password, { req }) => {
+    if (password !== req.body.confirm_password) {
+      throw new Error(pwdMismatch);
+    } else {
+      return password;
+    }
+  }),
 ];
 
 function getSignup(req, res) {
