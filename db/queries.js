@@ -8,4 +8,11 @@ async function getUser(email) {
   return user;
 }
 
-module.exports = { getUser };
+async function insertUser(user) {
+  await pool.query(
+    'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)',
+    [user.first_name, user.last_name, user.email, user.password]
+  );
+}
+
+module.exports = { getUser, insertUser };
