@@ -8,6 +8,14 @@
   <body>
     <%- include('navbar') %> <% if (user) { %>
     <div>Hello, <%= `${user.first_name} ${user.last_name}` %></div>
+    <div>Create a new message</div>
+    <form action="/new-message" method="POST">
+      <label for="title">Title</label>
+      <input id="title" name="title" type="text" maxlength="50" required />
+      <label for="content">Message</label>
+      <textarea name="content" id="content" maxlength="255" required></textarea>
+      <button>Send</button>
+    </form>
     <% } %>
   </body>
 </html>

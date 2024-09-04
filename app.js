@@ -13,6 +13,7 @@ const indexRouter = require('./routes/indexRouter');
 const signupRouter = require('./routes/signupRouter');
 const loginRouter = require('./routes/loginRouter');
 const joinRouter = require('./routes/joinRouter');
+const newMessageController = require('./controllers/newMessageController');
 const customError = require('./modules/error');
 
 app.set('views', path.join(__dirname, 'views'));
@@ -86,6 +87,7 @@ app.get('/log-out', (req, res, next) => {
   });
 });
 app.use('/join', joinRouter);
+app.post('/new-message', newMessageController.postNewMessage);
 app.use((req, res, next) => {
   next(new customError("This page doesn't exist.", 404, 'Page not found'));
 });
