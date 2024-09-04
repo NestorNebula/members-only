@@ -1,5 +1,7 @@
 const pool = require('./pool');
 
+// Users Queries
+
 async function getUser(email) {
   const { rows } = await pool.query('SELECT * FROM users WHERE email = $1', [
     email,
@@ -25,4 +27,19 @@ async function insertUser(user) {
   );
 }
 
-module.exports = { getUser, getUserById, updateMemberStatus, insertUser };
+// Messages Queries
+
+async function insertMessage(message) {
+  await pool.query(
+    'INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3)',
+    [message.title, message.content, message.user]
+  );
+}
+
+module.exports = {
+  getUser,
+  getUserById,
+  updateMemberStatus,
+  insertUser,
+  insertMessage,
+};
