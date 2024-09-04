@@ -14,6 +14,10 @@ async function getUserById(id) {
   return user;
 }
 
+async function updateMemberStatus(user) {
+  await pool.query('UPDATE users SET member = true WHERE id = $1', [user.id]);
+}
+
 async function insertUser(user) {
   await pool.query(
     'INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)',
@@ -21,4 +25,4 @@ async function insertUser(user) {
   );
 }
 
-module.exports = { getUser, getUserById, insertUser };
+module.exports = { getUser, getUserById, updateMemberStatus, insertUser };
