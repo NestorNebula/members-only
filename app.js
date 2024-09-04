@@ -6,9 +6,11 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const pgSession = require('connect-pg-simple')(session);
 const pool = require('./db/pool');
+const db = require('./db/queries');
 const app = express();
 const indexRouter = require('./routes/indexRouter');
 const signupRouter = require('./routes/signupRouter');
+const loginRouter = require('./routes/loginRouter');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -29,6 +31,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/sign-up', signupRouter);
+app.use('/log-in', loginRouter);
 
 const PORT = process.env.PORT;
 app.listen(PORT);
