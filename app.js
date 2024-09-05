@@ -15,6 +15,7 @@ const loginRouter = require('./routes/loginRouter');
 const joinRouter = require('./routes/joinRouter');
 const newMessageController = require('./controllers/newMessageController');
 const customError = require('./modules/error');
+const flash = require('connect-flash');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -31,6 +32,7 @@ app.use(
     cookie: { maxAge: 7 * 24 * 60 * 60 * 1000 },
   })
 );
+app.use(flash());
 app.use(passport.session());
 passport.use(
   new LocalStrategy(

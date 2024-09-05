@@ -9,6 +9,8 @@ loginRouter.post(
   passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/log-in',
+    successFlash: true,
+    failureFlash: true,
   })
 );
 
