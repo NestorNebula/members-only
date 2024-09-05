@@ -2,6 +2,8 @@
   <ul>
     <% if (user) { %> <% if (!user.member) { %>
     <li><a href="/join">Join The Club</a></li>
+    <% } else if (!user.admin) { %>
+    <li><a href="/admin">Become an Admin</a></li>
     <% } %>
     <a href="/log-out">Log Out</a>
     <% } else { %>
