@@ -13,6 +13,7 @@
         %> You <% } else { %> <%= `${message.first_name} +
         ${message.last_name}`%> <% } %>
       </div>
+      <div><%= message.timestamp.toLocaleString() %></div>
       <div><%= message.title %></div>
       <div><%= message.content %></div>
     </div>
