@@ -16,6 +16,12 @@
       <div><%= message.timestamp.toLocaleString() %></div>
       <div><%= message.title %></div>
       <div><%= message.content %></div>
+      <% if (user.admin) { %>
+      <form action="/delete" method="POST">
+        <button>X</button>
+        <input name="messageId" type="hidden" value="<%=message.id %>" />
+      </form>
+      <% } %>
     </div>
     <% }) %> <% if (user) { %>
     <div>Hello, <%= `${user.first_name} ${user.last_name}` %></div>

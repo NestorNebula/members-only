@@ -17,6 +17,7 @@ const newMessageController = require('./controllers/newMessageController');
 const adminRouter = require('./routes/adminRouter');
 const customError = require('./modules/error');
 const flash = require('connect-flash');
+const deleteController = require('./controllers/deleteController');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -92,6 +93,7 @@ app.get('/log-out', (req, res, next) => {
 app.use('/join', joinRouter);
 app.use('/admin', adminRouter);
 app.post('/new-message', newMessageController.postNewMessage);
+app.post('/delete', deleteController.postDeleteMessage);
 app.use((req, res, next) => {
   next(new customError("This page doesn't exist.", 404, 'Page not found'));
 });
