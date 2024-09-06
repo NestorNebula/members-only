@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Become an admin</title>
+  </head>
+  <body>
+    <% if (locals.error) { %>
+    <div><%= error %></div>
+    <% } %>
+    <div>
+      To become an admin, please enter the password that
+      <a href="https://github.com/NestorNebula">Nestor Nebula</a>gave you.
+    </div>
+    <form action="/admin" method="POST">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
