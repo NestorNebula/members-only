@@ -50,9 +50,12 @@ h6 {
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-nav {
-  background-color: black;
+body {
+  background-color: #111827;
   color: white;
+}
+
+nav {
   padding: 3rem;
   font-size: 3rem;
 }
