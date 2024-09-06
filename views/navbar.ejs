@@ -5,10 +5,12 @@
     <% } else if (!user.admin) { %>
     <li><a href="/admin">Become an Admin</a></li>
     <% } %>
-    <a href="/log-out">Log Out</a>
+    <li><a href="/">The Club</a></li>
+    <li><a href="/log-out">Log Out</a></li>
     <% } else { %>
-    <a href="/sign-up">Sign-Up</a>
-    <a href="/log-in">Log-In</a>
+    <li><a href="/sign-up">Sign-Up</a></li>
+    <li><a href="/">The Club</a></li>
+    <li><a href="/log-in">Log-In</a></li>
     <% } %>
   </ul>
 </nav>
