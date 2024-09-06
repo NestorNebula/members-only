@@ -35,7 +35,7 @@ async function insertUser(user) {
 
 async function getAllMessages() {
   const { rows } = await pool.query(
-    'SELECT * FROM messages AS m INNER JOIN users AS u ON m.user_id = u.id'
+    'SELECT m.id, title, timestamp, content, user_id, first_name, last_name FROM messages AS m INNER JOIN users AS u ON m.user_id = u.id'
   );
   return rows;
 }
