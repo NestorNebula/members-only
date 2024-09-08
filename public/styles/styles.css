@@ -120,3 +120,32 @@ form {
 .form-input {
   position: relative;
 }
+
+.icon {
+  max-width: 3rem;
+  filter: invert();
+}
+
+.delete-icon,
+.gh-icon {
+  width: 100%;
+}
+
+footer {
+  font-size: 1.15rem;
+  margin-top: auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cr {
+  display: flex;
+  align-items: center;
+}
+
+.gh-icon {
+  margin: 0 1rem;
+}

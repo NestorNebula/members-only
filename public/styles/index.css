@@ -31,15 +31,6 @@ main {
   gap: 0.5rem;
 }
 
-.icon {
-  max-width: 3rem;
-  filter: invert();
-}
-
-.delete-icon {
-  width: 100%;
-}
-
 .m-time-admin {
   display: flex;
   align-items: center;
