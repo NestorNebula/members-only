@@ -20,7 +20,7 @@
           <div>
             <% if (!user || !user.member) { %> Anonymous <% } else if (user.id
               === message.user_id) { %> You <% } else { %> <%=
-              `${message.first_name} + ${message.last_name}`%> <% } %>
+              `${message.first_name} ${message.last_name}`%> <% } %>
           </div>
         </div>
         <div class="m-time-admin">
