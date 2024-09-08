@@ -76,10 +76,6 @@ form {
   gap: 3rem;
 }
 
-.form-input {
-  position: relative;
-}
-
 input,
 textarea {
   background-color: inherit;

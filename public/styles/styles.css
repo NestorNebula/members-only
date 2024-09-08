@@ -108,3 +108,7 @@ button:hover {
 form {
   display: grid;
 }
+
+.form-input {
+  position: relative;
+}
