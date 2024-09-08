@@ -71,7 +71,7 @@ const postSignUp = [
         password: hashedPassword,
       });
     });
-    res.redirect('/');
+    res.redirect('/log-in');
   },
 ];
 
