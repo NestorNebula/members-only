@@ -1,0 +1,47 @@
+main {
+  margin: 5rem;
+  gap: 3rem;
+}
+
+.errors {
+  background-color: rgb(220, 38, 38, 0.75);
+  padding: 1.5rem;
+  font-size: 1.75rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+form {
+  border-radius: 10px;
+  background-color: #475569;
+  padding: 3rem;
+  gap: 3rem;
+}
+
+input {
+  background-color: inherit;
+  color: inherit;
+  border: 1px solid white;
+  padding: 1rem 0.5rem 0.5rem;
+}
+
+label {
+  position: absolute;
+  left: 1rem;
+  top: -1.5rem;
+  background-color: #475569;
+  padding: 0 1rem;
+}
+
+button {
+  color: white;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #475569 inset;
+}
