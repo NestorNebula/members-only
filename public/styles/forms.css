@@ -20,6 +20,12 @@ form {
   gap: 3rem;
 }
 
+form,
+.errors {
+  width: fit-content;
+  align-self: center;
+}
+
 input {
   background-color: inherit;
   color: inherit;
