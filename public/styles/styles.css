@@ -92,6 +92,10 @@ a + .user-name {
   margin-top: 2.5rem;
 }
 
+img {
+  -webkit-user-drag: none;
+}
+
 main {
   align-self: center;
   display: flex;
