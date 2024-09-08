@@ -5,13 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/styles/styles.css" />
+  <link rel="stylesheet" href="/styles/error.css" />
   <title><%= `Error ${error.statusCode}` %></title>
 </head>
 
 <body>
-  <div><%= error.title %></div>
-  <div><%= error.message %></div>
-  <a href="/">Return to Homepage</a>
+  <main>
+    <div class="error">
+      <div><%= `${error.statusCode} - ${error.title}` %></div>
+      <div><%= error.message %></div>
+    </div>
+    <a href="/">Return to Homepage</a>
+  </main>
 </body>
 
 </html>

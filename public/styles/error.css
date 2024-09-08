@@ -1,0 +1,12 @@
+body {
+  justify-content: center;
+}
+
+main {
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.error {
+  font-size: 3rem;
+}
