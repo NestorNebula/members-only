@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/styles/styles.css" />
+    <link rel="stylesheet" href="/styles/index.css" />
     <title><%= title %></title>
   </head>
   <body>
@@ -13,51 +14,65 @@
         <% messages.forEach((message) => { %>
         <div class="message">
           <div class="m-name">
-            <% if (!user || !user.member) { %> Anonymous <% } else if (user.id
-            === message.user_id) { %> You <% } else { %> <%=
-            `${message.first_name} + ${message.last_name}`%> <% } %>
+            <img class="icon" src="/assets/icons/user.svg" alt="" />
+            <div>
+              <% if (!user || !user.member) { %> Anonymous <% } else if (user.id
+              === message.user_id) { %> You <% } else { %> <%=
+              `${message.first_name} + ${message.last_name}`%> <% } %>
+            </div>
           </div>
-          <div class="m-time">
-            <% if (user && user.member) { %> <%=
-            message.timestamp.toLocaleString() %> <% } %>
+          <div class="m-time-admin">
+            <div class="m-time">
+              <% if (user && user.member) { %> <%=
+              message.timestamp.toLocaleString() %> <% } %>
+            </div>
+            <% if (user && user.admin) { %>
+            <form action="/delete" method="POST">
+              <button class="m-delete">
+                <img
+                  class="delete-icon icon"
+                  src="/assets/icons/delete.svg"
+                  alt="Delete Message"
+                />
+              </button>
+              <input name="messageId" type="hidden" value="<%=message.id %>" />
+            </form>
+            <% } %>
           </div>
           <div class="m-title"><%= message.title %></div>
           <div class="m-content"><%= message.content %></div>
-          <% if (user && user.admin) { %>
-          <form action="/delete" method="POST">
-            <button class="m-delete">X</button>
-            <input name="messageId" type="hidden" value="<%=message.id %>" />
-          </form>
-          <% } %>
         </div>
         <% }) %>
       </section>
       <section class="user-dashboard">
         <% if (user) { %>
-        <div class="welcome">
-          Hello, <%= `${user.first_name} ${user.last_name}` %>
-        </div>
         <div class="new-m">
           <div>Create a new message</div>
           <form action="/new-message" method="POST">
-            <label for="title">Title</label>
-            <input
-              id="title"
-              name="title"
-              type="text"
-              maxlength="50"
-              required
-            />
-            <label for="content">Message</label>
-            <textarea
-              name="content"
-              id="content"
-              maxlength="255"
-              required
-            ></textarea>
-            <button>Send</button>
+            <div class="form-input">
+              <label for="title">Title</label>
+              <input
+                id="title"
+                name="title"
+                type="text"
+                maxlength="50"
+                required
+              />
+            </div>
+            <div class="form-input">
+              <label for="content">Message</label>
+              <textarea
+                name="content"
+                id="content"
+                maxlength="255"
+                required
+              ></textarea>
+            </div>
+            <button class="send">Send</button>
           </form>
         </div>
+        <% } else { %>
+        <div>Create an account to send a message</div>
         <% } %>
       </section>
     </main>
